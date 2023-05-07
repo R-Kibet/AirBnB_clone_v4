@@ -22,7 +22,7 @@ function checkObj (objects) {
   });
 
 function init () {
-  $('.amenities .popover input').change(() => { obj = amenityObj; checkObjcall(this, 1); });
+  $('.amenities .popover input').change(() => { obj = amenityObj; checkObj.call(this, 1); });
   $('.state_input').change(() =>{ obj = stateObj; checkObj.call(this, 2); });
   $('.city_input').change(() => { obj = cityObj; checkObj.call(this, 3); });
   apiStatus();
@@ -31,7 +31,7 @@ function init () {
 
 
 function apiStatus () {
-  const API_URL = `http://0.0.0.0:5001/api/v1/status/`;
+  const API_URL = 'http://0.0.0.0:5001/api/v1/status/';
   $.get(API_URL, (data, textStatus) => {
     if (textStatus === 'success' && data.status === 'OK') {
       $('#api_status').addClass('available');
@@ -42,7 +42,7 @@ function apiStatus () {
 }
 
 function fetchPlaces () {
-  const PLACES_URL = `http://0.0.0.0:5001/api/v1/places_search/`;
+  const PLACES_URL = 'http://0.0.0.0:5001/api/v1/places_search/';
   $.ajax({
     url: PLACES_URL,
     type: 'POST',
